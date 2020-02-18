@@ -4,10 +4,14 @@ class AddTask extends Component{
     {
         super(props);
         this.state={
-            isSwitch:false
+            isSwitch:false,
+            isToggle : ['Small','Medium','High']
         }
-    }
+    };
     render(){
+        var elementToggle = this.state.isToggle.map((value,index)=>{
+        return <option key={index}>{value}</option>
+        })
         return(
             <div className="col-12 col-lg-6">
             <div className="form-group add-task">
@@ -23,9 +27,7 @@ class AddTask extends Component{
                 <div className="form-group">
                 <label className="sr-only" for="">label</label>
                 <select name="ds" className="form-control" required="required">
-                    <option value="0">Small</option>
-                    <option value="1">Medium</option>
-                    <option value="2">High</option>
+                    {elementToggle}
                 </select>
                 </div>
                 <button type="button" className="btn btn-primary">Submit</button>

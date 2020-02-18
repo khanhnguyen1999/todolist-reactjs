@@ -1,5 +1,35 @@
 import React from 'react';
-export default function ListTask(){
+export default class ListTask extends React.Component{
+
+  render(){
+      var {list}=this.props;
+      var check = function checking(level){
+        console.log(level);
+        if(level==='High')
+        {
+          return <td className="text-center"><span className="badge badge-danger">{level}</span></td>
+        }
+        if(level==='Medium')
+        {
+          return <td className="text-center"><span className="badge badge-info">{level}</span></td>
+        }
+        return <td className="text-center"><span className="badge badge-primary">{level}</span></td>
+      }
+      var elements = list.map((value,index)=>{
+        console.log(value.name);
+        // checking(value.level);
+        return (
+          <tr key={index}>
+              <td className="text-center">{index}</td>
+              <td>{value.name}</td>
+              {()=>this.check(value.level)}
+              <td>
+                <button type="button" className="mr-1 btn btn-info">Edit</button>
+                <button type="button" className="btn btn-danger">Delete</button>
+              </td>
+            </tr>
+        )
+      })
     return(
         <table className="table table-hover ">
           <thead>
@@ -11,34 +41,9 @@ export default function ListTask(){
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className="text-center">1</td>
-              <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ea c</td>
-              <td className="text-center"><span className="badge badge-danger">High</span></td>
-              <td>
-                <button type="button" className="mr-1 btn btn-warning">Edit</button>
-                <button type="button" className="btn btn-danger">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td className="text-center">2</td>
-              <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ea c</td>
-              <td className="text-center"><span className="badge badge-secondary">Small</span></td>
-              <td>
-                <button type="button" className="mr-1 btn btn-warning">Edit</button>
-                <button type="button" className="btn btn-danger">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td className="text-center">3</td>
-              <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ea c</td>
-              <td className="text-center"><span className="badge badge-info">Medium</span></td>
-              <td>
-                <button type="button" className="mr-1 btn btn-warning">Edit</button>
-                <button type="button" className="btn btn-danger">Delete</button>
-              </td>
-            </tr>
+            {elements}
           </tbody>
         </table>
     )
+}
 }
