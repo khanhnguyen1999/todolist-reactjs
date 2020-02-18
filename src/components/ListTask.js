@@ -1,5 +1,23 @@
 import React from 'react';
-export default function ListTask(){
+export default class ListTask extends React.Component{
+    render(){
+      var elements = this.props.list.map((value,index)=>{
+        return (
+          <tr key={index}>
+                <td className="text-center">{index+1}</td>
+                <td>{value.name}</td>
+                <td className="text-center"><span className=
+                {"badge "+(value.level==='High'
+                ?"badge-danger":value.level==='Medium'?
+                "badge-primary":"badge-info")}
+                >{value.level}</span></td>
+                <td>
+                  <button type="button" className="mr-1 btn btn-warning">Edit</button>
+                  <button type="button" className="btn btn-danger">Delete</button>
+                </td>
+              </tr>
+        )
+      })
     return(
         <table className="table table-hover ">
           <thead>
@@ -11,34 +29,9 @@ export default function ListTask(){
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className="text-center">1</td>
-              <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ea c</td>
-              <td className="text-center"><span className="badge badge-danger">High</span></td>
-              <td>
-                <button type="button" className="mr-1 btn btn-warning">Edit</button>
-                <button type="button" className="btn btn-danger">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td className="text-center">2</td>
-              <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ea c</td>
-              <td className="text-center"><span className="badge badge-secondary">Small</span></td>
-              <td>
-                <button type="button" className="mr-1 btn btn-warning">Edit</button>
-                <button type="button" className="btn btn-danger">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td className="text-center">3</td>
-              <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ea c</td>
-              <td className="text-center"><span className="badge badge-info">Medium</span></td>
-              <td>
-                <button type="button" className="mr-1 btn btn-warning">Edit</button>
-                <button type="button" className="btn btn-danger">Delete</button>
-              </td>
-            </tr>
+              {elements}
           </tbody>
         </table>
     )
+}
 }

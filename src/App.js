@@ -3,8 +3,28 @@ import './assets/style.css';
 import SearchTask from './components/SearchTask';
 import AddTask from './components/AddTask';
 import ListTask from './components/ListTask';
-function App() {
-
+class App extends React.Component {
+  constructor(props)
+  {
+    super(props);
+    this.state = {
+      isList : [
+        {
+          name:'khanh',
+          level:'High'
+        },
+        {
+          name:'Huy',
+          level:'Medium'
+        },
+        {
+          name:'duy',
+          level:'Small'
+        }
+      ]
+    }
+  }
+  render(){
   return (
     <div className="container">
       <div className="page-header">
@@ -17,10 +37,10 @@ function App() {
       </div>
       <div className="panel panel-success">
         <div className="panel-heading">List Task</div>
-        <ListTask/>
+        <ListTask list = {this.state.isList}/>
       </div>
     </div>
   );
 }
-
+}
 export default App;
