@@ -1,5 +1,17 @@
 import React from 'react';
 export default class ListTask extends React.Component{
+    constructor(props)
+    {
+      super(props);
+      this.state = {
+
+      }
+      this.handleDelete = this.handleDelete.bind(this);
+    }
+    handleDelete(id)
+    {
+      this.props.onClickDelete(id);
+    }
     render(){
       var elements = this.props.list.map((value,index)=>{
         return (
@@ -13,7 +25,7 @@ export default class ListTask extends React.Component{
                 >{value.level}</span></td>
                 <td>
                   <button type="button" className="mr-1 btn btn-warning">Edit</button>
-                  <button type="button" className="btn btn-danger">Delete</button>
+                  <button onClickDelete={this.props.handleDelete} onClick={()=>this.handleDelete(value.id)} type="button" className="btn btn-danger">Delete</button>
                 </td>
               </tr>
         )
