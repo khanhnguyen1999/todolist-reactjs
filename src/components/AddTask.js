@@ -7,21 +7,17 @@ class AddTask extends Component{
             isSwitch:false,
             isToggle : ['Small','Medium','High'],
             isList:[
-                {id:'',name:'',level:''}
+                {id:Math.ceil(Math.random()*1000),name:'',level:''}
             ]
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this)
     };
     handleChange(event){
-        console.log(event.target.name.level);
-        this.setState({isList: [
-            {
-            id:Math.ceil(Math.random()*1000),
-            name:event.target.value,
-            level:event.target.value
-        }]});
-        // console.log(this.state.isList.name);
+        this.setState( { 
+            ...this.state,
+            [event.target.id]: event.target.value
+        } );
     };
     handleSubmit(event){
         console.log(this.state.isList);
